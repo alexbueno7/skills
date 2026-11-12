@@ -190,7 +190,7 @@ def main():
     print("="*60)
     
     print(f"\n📈 Distribuição de Status:")
-    for status, count in sorted(result["status_distribution"].items()):
+    for status, count in sorted(result["status_distribution"].items(), key=lambda kv: str(kv[0])):
         pct = (count / args.requests) * 100
         bar = "█" * int(pct / 5)
         print(f"   {status:>4}: {count:>4} ({pct:5.1f}%) {bar}")

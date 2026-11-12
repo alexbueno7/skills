@@ -49,7 +49,9 @@ def test_bola(
     ]
     
     for method in methods:
-        for test in test_cases:
+        # DELETE legítimo apaga o recurso; os acessos cruzados precisam vir antes
+        cases = sorted(test_cases, key=lambda t: t["should_succeed"]) if method == "DELETE" else test_cases
+        for test in cases:
             url = url_template.replace("{id}", test["id"])
             headers = {"Authorization": f"Bearer {test['token']}"}
             
@@ -84,10 +86,12 @@ def test_bola(
                     try:
                         data = resp.json()
                         sensitive_fields = ["password", "passwordHash", "secret", "token", "apiKey", "creditCard"]
-                        exposed = [k for k in data.keys() if any(s.lower() in k.lower() for s in sensitive_fields)]
+                        items = data if isinstance(data, list) else [data]
+                        exposed = sorted({k for item in items if isinstance(item, dict) for k in item
+                                          if any(s.lower() in k.lower() for s in sensitive_fields)})
                         if exposed:
                             result["exposed_fields"] = exposed
-                    except:
+                    except ValueError:
                         pass
                 
                 results.append(result)

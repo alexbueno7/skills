@@ -119,7 +119,7 @@ def analyze_openapi(base_url: str) -> list[dict]:
                             })
                 
                 return endpoints
-        except:
+        except Exception:
             pass
     
     return []
