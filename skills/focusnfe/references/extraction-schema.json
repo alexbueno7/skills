@@ -1,0 +1,36 @@
+{
+  "$comment": "Schema equivalente ao que o comando build_extraction_schema pediria. Usar em scrape/crawl da doc Focus NFe (HTML ReadMe) ou nas páginas .md com OpenAPI.",
+  "name": "focusnfe_openapi_page",
+  "baseSelector": "body",
+  "fields": [
+    { "name": "title", "selector": "h1", "type": "text" },
+    { "name": "summary", "selector": "article p, #content p", "type": "text" },
+    {
+      "name": "openapi_json",
+      "selector": "pre code, code.lang-json",
+      "type": "text"
+    }
+  ],
+  "openapi_projection": {
+    "servers": "servers[].url",
+    "security": "HTTP Basic, token as username, empty password",
+    "operations": {
+      "path": "paths.*",
+      "method": "get|post|put|delete",
+      "operationId": "operationId",
+      "parameters": "parameters[] {name,in,required}",
+      "requestBody": "requestBody.content.application/json.schema",
+      "responses": {
+        "http_status": "responses.*",
+        "description": "description",
+        "json_schema": "content.application/json.schema",
+        "examples": "content.application/json.examples|example"
+      }
+    },
+    "error_object": {
+      "codigo": "string",
+      "mensagem": "string",
+      "erros": [{ "campo": "string", "mensagem": "string", "correcao": "string" }]
+    }
+  }
+}

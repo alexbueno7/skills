@@ -1,0 +1,5009 @@
+{
+  "ops": [
+    {
+      "file": "atualizar_empresa.md",
+      "title": "Empresas",
+      "operationId": "atualizar_empresa",
+      "summary": "Atualizar",
+      "method": "PUT",
+      "path": "/empresas/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "desc": "Identificador único da empresa"
+        },
+        {
+          "name": "dry_run",
+          "in": "query",
+          "required": false,
+          "desc": "Simula a alteração da empresa sem persistir os dados"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "ParametrosInvalidos"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "EmpresaNaoEncontrada"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "Empresas"
+      ]
+    },
+    {
+      "file": "cancelar_cte_cte_os.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "cancelar_cte_cte_os",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/cte/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência do CT-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "CteNaoAutorizado"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CteNaoEncontrado"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "cancelar_dce.md",
+      "title": "DCe - Declaração de Conteúdo Eletrônica",
+      "operationId": "cancelar_dce",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/dce/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da DCe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "DceNaoAutorizada"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "DceNaoEncontrada"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "DCe"
+      ]
+    },
+    {
+      "file": "cancelar_econf_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "cancelar_econf_nfce",
+      "summary": "Cancelar ECONF",
+      "method": "DELETE",
+      "path": "/nfce/{referencia}/econf/{numero_protocolo}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFC-e"
+        },
+        {
+          "name": "numero_protocolo",
+          "in": "path",
+          "required": true,
+          "desc": "Número do protocolo do ECONF"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "ECONF cancelado com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "cancelar_evento_econf.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "cancelar_evento_econf",
+      "summary": "Cancelar Conciliação Financeira (ECONF)",
+      "method": "DELETE",
+      "path": "/nfe/{referencia}/econf/{numero_protocolo}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        },
+        {
+          "name": "numero_protocolo",
+          "in": "path",
+          "required": true,
+          "desc": "Número do protocolo retornado no registro do ECONF"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "ECONF cancelado com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "422",
+          "desc": "ECONF não pode ser cancelado"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "cancelar_evento_insucesso_entrega.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "cancelar_evento_insucesso_entrega",
+      "summary": "Cancelar Insucesso na Entrega",
+      "method": "DELETE",
+      "path": "/nfe/{referencia}/insucesso_entrega",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Cancelamento do insucesso na entrega registrado"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "cancelar_evento_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "cancelar_evento_nfe",
+      "summary": "Cancelar evento",
+      "method": "DELETE",
+      "path": "/nfe/{referencia}/evento",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NF-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "cancelar_evento_nfes_recebidas.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "cancelar_evento_nfes_recebidas",
+      "summary": "Cancelar evento",
+      "method": "DELETE",
+      "path": "/nfes_recebidas/{chave}/evento",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "cancelar_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "cancelar_mdfe",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/mdfe/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da MDFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontradoResponse"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "cancelar_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "cancelar_nfce",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/nfce/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFC-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "cancelar_nfce_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "cancelar_nfce_local",
+      "summary": "Cancelar NFCe",
+      "method": "DELETE",
+      "path": "/v2/fiscal/nfce/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência utilizada na emissão da NFCe."
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Documento cancelado com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "cancelar_nfcom.md",
+      "title": "NFCom - Nota Fiscal de Comunicação",
+      "operationId": "cancelar_nfcom",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/nfcom/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFCom"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "NfcomNaoAutorizada"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfcomNaoEncontrada"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "NFCom"
+      ]
+    },
+    {
+      "file": "cancelar_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "cancelar_nfe",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/nfe/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "NFe cancelada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "cancelar_nfgas.md",
+      "title": "NFGás - Nota Fiscal Eletrônica do Gás",
+      "operationId": "cancelar_nfgas",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/nfgas/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFGás"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "NfgasNaoAutorizada"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfgasNaoEncontrada"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "NFGás (Beta)"
+      ]
+    },
+    {
+      "file": "cancelar_nfse.md",
+      "title": "NFSe - Nota Fiscal de Serviço",
+      "operationId": "cancelar_nfse",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/nfse/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "404",
+          "desc": "NfseNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe"
+      ]
+    },
+    {
+      "file": "cancelar_nfse_nacional.md",
+      "title": "NFSe Nacional - Nota Fiscal de Serviço Padrão Nacional",
+      "operationId": "cancelar_nfse_nacional",
+      "summary": "Cancelar",
+      "method": "DELETE",
+      "path": "/nfsen/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe a ser cancelada"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional"
+      ]
+    },
+    {
+      "file": "carta_correcao_cte_cte_os.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "carta_correcao_cte_cte_os",
+      "summary": "Carta de correção",
+      "method": "POST",
+      "path": "/cte/{referencia}/carta_correcao",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência do CT-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CteNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "consultar_backups_por_cnpj.md",
+      "title": "Backups (NFe, NFCe, CTe e MDFe)",
+      "operationId": "consultar_backups_por_cnpj",
+      "summary": "Consultar por CNPJ",
+      "method": "GET",
+      "path": "/backups/{cnpj}.json",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "path",
+          "required": true,
+          "desc": "CNPJ da empresa (somente números)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "Ação não permitida"
+        }
+      ],
+      "tags": [
+        "Backups"
+      ]
+    },
+    {
+      "file": "consultar_cep_por_codigo.md",
+      "title": "CEPs - Código de Endereçamento Postal (beta)",
+      "operationId": "consultar_cep_por_codigo",
+      "summary": "Consultar por número",
+      "method": "GET",
+      "path": "/ceps/{cep}",
+      "params": [
+        {
+          "name": "cep",
+          "in": "path",
+          "required": true,
+          "desc": "Código CEP exato (8 dígitos)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CEPNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "CEPs"
+      ]
+    },
+    {
+      "file": "consultar_ceps.md",
+      "title": "CEPs - Código de Endereçamento Postal (beta)",
+      "operationId": "consultar_ceps",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/ceps",
+      "params": [
+        {
+          "name": "codigo_ibge",
+          "in": "query",
+          "required": false,
+          "desc": "Código IBGE (7 dígitos) do município"
+        },
+        {
+          "name": "uf",
+          "in": "query",
+          "required": false,
+          "desc": "Sigla da Unidade da Federação (UF)"
+        },
+        {
+          "name": "logradouro",
+          "in": "query",
+          "required": false,
+          "desc": "Logradouro completo ou parte dele (mínimo 3 caracteres)"
+        },
+        {
+          "name": "localidade",
+          "in": "query",
+          "required": false,
+          "desc": "Nome da localidade (município, distrito ou povoado) completo ou parte"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "desc": "Número de registros a serem ignorados para paginação (máximo 50 registros por página)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "CEPs"
+      ]
+    },
+    {
+      "file": "consultar_cfop_especifico.md",
+      "title": "CFOP - Código Fiscal de Operações e Prestações",
+      "operationId": "consultar_cfop_especifico",
+      "summary": "Consultar por código",
+      "method": "GET",
+      "path": "/cfops/{codigo}",
+      "params": [
+        {
+          "name": "codigo",
+          "in": "path",
+          "required": true,
+          "desc": "Código CFOP exato (4 dígitos)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CFOPNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "CFOP"
+      ]
+    },
+    {
+      "file": "consultar_cfops.md",
+      "title": "CFOP - Código Fiscal de Operações e Prestações",
+      "operationId": "consultar_cfops",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/cfops",
+      "params": [
+        {
+          "name": "codigo",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquise pela parte inicial do código CFOP"
+        },
+        {
+          "name": "descricao",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa por parte da descrição do código CFOP"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "desc": "Número de registros a serem ignorados para paginação (máximo 50 registros por página)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "CFOP"
+      ]
+    },
+    {
+      "file": "consultar_cnpj.md",
+      "title": "CNPJ - Cadastro Nacional da Pessoa Jurídica",
+      "operationId": "consultar_cnpj",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/cnpjs/{cnpj}",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "path",
+          "required": true,
+          "desc": "Número de inscrição no CNPJ com 14 dígitos (somente números)."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CnpjNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "CNPJ"
+      ]
+    },
+    {
+      "file": "consultar_codigo_cnae.md",
+      "title": "CNAE - Classificação Nacional de Atividades Econômicas",
+      "operationId": "consultar_codigo_cnae",
+      "summary": "Consultar por código",
+      "method": "GET",
+      "path": "/codigos_cnae/{codigo}",
+      "params": [
+        {
+          "name": "codigo",
+          "in": "path",
+          "required": true,
+          "desc": "Código CNAE exato."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CnaeNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "CNAE"
+      ]
+    },
+    {
+      "file": "consultar_codigo_tributario_municipio.md",
+      "title": "Municípios (beta)",
+      "operationId": "consultar_codigo_tributario_municipio",
+      "summary": "Consultar código tributário municipal por código",
+      "method": "GET",
+      "path": "/municipios/{codigo_municipio}/codigos_tributarios_municipio/{codigo}",
+      "params": [
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "codigo",
+          "in": "path",
+          "required": true,
+          "desc": "Código do tributo municipal"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "Recurso não encontrado"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "consultar_cte_cte_os.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_cte_os",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/cte/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência do CTe"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado o valor 1, retorna os dados completos da nota, caso esses estejam disponíveis. Caso contrário, retorna apenas os dados resumidos."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CteNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "consultar_cte_recebida_cancelamento_xml.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_recebida_cancelamento_xml",
+      "summary": "Baixar o XML de cancelamento",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}/cancelamento.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlCancelamento"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_cte_recebida_carta_correcao_xml.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_recebida_carta_correcao_xml",
+      "summary": "Baixar o XML de carta de correção",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}/carta_correcao.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlCartaCorrecao"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_cte_recebida_individual.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_recebida_individual",
+      "summary": "Consultar por chave",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        },
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": false,
+          "desc": "CNPJ da empresa recebedora, utilizado para desambiguar em caso de múltiplas empresas com a mesma chave"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado o valor 1, retorna os dados completos da nota, caso esses estejam disponíveis. Caso contrário, retorna apenas os dados resumidos."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_cte_recebida_individual_json.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_recebida_individual_json",
+      "summary": "Consulta em formato JSON",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}.json",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado o valor 1, retorna os dados completos da nota, caso esses estejam disponíveis. Caso contrário, retorna apenas os dados resumidos."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_cte_recebida_individual_pdf.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_recebida_individual_pdf",
+      "summary": "Baixar o DACTe",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}.pdf",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_cte_recebida_individual_xml.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_cte_recebida_individual_xml",
+      "summary": "Baixar o XML",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlCTe"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_ctes_recebidas.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_ctes_recebidas",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/ctes_recebidas",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": true,
+          "desc": "CNPJ da empresa recebedora"
+        },
+        {
+          "name": "versao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca apenas os documentos cuja versão seja maior que o parâmetro recebido. Utilize este parâmetro para buscar apenas as notas que seu sistema ainda não conhece."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_dce.md",
+      "title": "DCe - Declaração de Conteúdo Eletrônica",
+      "operationId": "consultar_dce",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/dce/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da DCe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "DceNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "DCe"
+      ]
+    },
+    {
+      "file": "consultar_desacordo_cte.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "consultar_desacordo_cte",
+      "summary": "Consultar desacordo",
+      "method": "GET",
+      "path": "/ctes_recebidas/{chave}/desacordo",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlDesacordo"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_econf_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "consultar_econf_nfce",
+      "summary": "Consultar ECONF",
+      "method": "GET",
+      "path": "/nfce/{referencia}/econf/{numero_protocolo}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFC-e"
+        },
+        {
+          "name": "numero_protocolo",
+          "in": "path",
+          "required": true,
+          "desc": "Número do protocolo retornado no registro do ECONF"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Dados da consulta"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "consultar_email_bloqueado.md",
+      "title": "Emails bloqueados",
+      "operationId": "consultar_email_bloqueado",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/blocked_emails/{email}",
+      "params": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "desc": "Endereço de email a consultar."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Email encontrado na lista de bloqueios"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "EmailNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "Emails Bloqueados"
+      ]
+    },
+    {
+      "file": "consultar_empresa_por_id.md",
+      "title": "Empresas",
+      "operationId": "consultar_empresa_por_id",
+      "summary": "Consultar por ID",
+      "method": "GET",
+      "path": "/empresas/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "desc": "Identificador único da empresa"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "EmpresaNaoEncontrada"
+        },
+        {
+          "code": "422",
+          "desc": "PermissaoNegada"
+        }
+      ],
+      "tags": [
+        "Empresas"
+      ]
+    },
+    {
+      "file": "consultar_evento_econf.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "consultar_evento_econf",
+      "summary": "Consultar Conciliação Financeira (ECONF)",
+      "method": "GET",
+      "path": "/nfe/{referencia}/econf/{numero_protocolo}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        },
+        {
+          "name": "numero_protocolo",
+          "in": "path",
+          "required": true,
+          "desc": "Número do protocolo retornado no registro do ECONF"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Dados do ECONF"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "consultar_inutilizacoes.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "consultar_inutilizacoes",
+      "summary": "Consultar Inutilizações",
+      "method": "GET",
+      "path": "/nfe/inutilizacoes",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": false,
+          "desc": "CNPJ da empresa (obrigatório se não informado CPF)"
+        },
+        {
+          "name": "cpf",
+          "in": "query",
+          "required": false,
+          "desc": "CPF da empresa (obrigatório se não informado CNPJ)"
+        },
+        {
+          "name": "data_recebimento_inicial",
+          "in": "query",
+          "required": false,
+          "desc": "Data inicial de recebimento da inutilização pela SEFAZ"
+        },
+        {
+          "name": "data_recebimento_final",
+          "in": "query",
+          "required": false,
+          "desc": "Data final de recebimento da inutilização pela SEFAZ"
+        },
+        {
+          "name": "numero_inicial",
+          "in": "query",
+          "required": false,
+          "desc": "Número inicial inutilizado"
+        },
+        {
+          "name": "numero_final",
+          "in": "query",
+          "required": false,
+          "desc": "Número final inutilizado"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de inutilizações"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "consultar_inutilizacoes_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "consultar_inutilizacoes_nfce",
+      "summary": "Consultar inutilizações",
+      "method": "GET",
+      "path": "/nfce/inutilizacoes",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": false,
+          "desc": "CNPJ da empresa (obrigatório se não informar cpf)"
+        },
+        {
+          "name": "cpf",
+          "in": "query",
+          "required": false,
+          "desc": "CPF da empresa (obrigatório se não informar cnpj)"
+        },
+        {
+          "name": "data_recebimento_inicial",
+          "in": "query",
+          "required": false,
+          "desc": "Data inicial de recebimento da inutilização pela SEFAZ"
+        },
+        {
+          "name": "data_recebimento_final",
+          "in": "query",
+          "required": false,
+          "desc": "Data final de recebimento da inutilização pela SEFAZ"
+        },
+        {
+          "name": "numero_inicial",
+          "in": "query",
+          "required": false,
+          "desc": "Número inicial inutilizado"
+        },
+        {
+          "name": "numero_final",
+          "in": "query",
+          "required": false,
+          "desc": "Número final inutilizado"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de inutilizações"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "consultar_item_lista_servico_municipio.md",
+      "title": "Municípios (beta)",
+      "operationId": "consultar_item_lista_servico_municipio",
+      "summary": "Consultar item da lista de serviço por código",
+      "method": "GET",
+      "path": "/municipios/{codigo_municipio}/itens_lista_servico/{codigo}",
+      "params": [
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "codigo",
+          "in": "path",
+          "required": true,
+          "desc": "Código do item na lista de serviço (ex. 1.06)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "Recurso não encontrado"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "consultar_json_municipio.md",
+      "title": "Municípios (beta)",
+      "operationId": "consultar_json_municipio",
+      "summary": "Consultar o JSON de exemplo do município pelo código IBGE",
+      "method": "GET",
+      "path": "/municipios/{codigo_municipio}/json",
+      "params": [
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "Recurso não encontrado"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "consultar_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "consultar_mdfe",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/mdfe/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da MDFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontradoResponse"
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "consultar_municipio.md",
+      "title": "Municípios (beta)",
+      "operationId": "consultar_municipio",
+      "summary": "Consultar município por código IBGE",
+      "method": "GET",
+      "path": "/municipios/{codigo_municipio}",
+      "params": [
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "Recurso não encontrado"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "consultar_ncm_especifico.md",
+      "title": "NCM - Nomenclatura Comum do Mercosul",
+      "operationId": "consultar_ncm_especifico",
+      "summary": "Consultar por código",
+      "method": "GET",
+      "path": "/ncms/{codigo}",
+      "params": [
+        {
+          "name": "codigo",
+          "in": "path",
+          "required": true,
+          "desc": "Código NCM exato (8 dígitos)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NCMNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "NCM"
+      ]
+    },
+    {
+      "file": "consultar_ncms.md",
+      "title": "NCM - Nomenclatura Comum do Mercosul",
+      "operationId": "consultar_ncms",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/ncms",
+      "params": [
+        {
+          "name": "codigo",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquise pela parte inicial do código NCM"
+        },
+        {
+          "name": "descricao",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa por parte da descrição do código NCM"
+        },
+        {
+          "name": "capitulo",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa exata pelo capítulo do código NCM (2 dígitos)"
+        },
+        {
+          "name": "posicao",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa exata pela posição do código NCM (2 dígitos)"
+        },
+        {
+          "name": "subposicao1",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa exata pela subposição 1 do código NCM (1 dígito)"
+        },
+        {
+          "name": "subposicao2",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa exata pela subposição 2 do código NCM (1 dígito)"
+        },
+        {
+          "name": "item1",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa exata pelo item 1 do código NCM (1 dígito)"
+        },
+        {
+          "name": "item2",
+          "in": "query",
+          "required": false,
+          "desc": "Pesquisa exata pelo item 2 do código NCM (1 dígito)"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "desc": "Número de registros a serem ignorados para paginação (máximo 50 registros por página)"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "NCM"
+      ]
+    },
+    {
+      "file": "consultar_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "consultar_nfce",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfce/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFC-e"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se 1, retorna dados completos da requisição e protocolo"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "consultar_nfce_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "consultar_nfce_local",
+      "summary": "Consultar NFCe",
+      "method": "GET",
+      "path": "/v2/fiscal/nfce/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência utilizada na emissão da NFCe."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "consultar_nfcom.md",
+      "title": "NFCom - Nota Fiscal de Comunicação",
+      "operationId": "consultar_nfcom",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfcom/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFCom"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfcomNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFCom"
+      ]
+    },
+    {
+      "file": "consultar_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "consultar_nfe",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfe/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado como 1, retorna dados completos da requisição e protocolo"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "consultar_nfe_recebida_cancelamento_xml.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfe_recebida_cancelamento_xml",
+      "summary": "Baixar o XML de cancelamento",
+      "method": "GET",
+      "path": "/nfes_recebidas/{chave}/cancelamento.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlNfe"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfe_recebida_carta_correcao_xml.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfe_recebida_carta_correcao_xml",
+      "summary": "Baixar o XML de carta de correção",
+      "method": "GET",
+      "path": "/nfes_recebidas/{chave}/carta_correcao.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlNfe"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfe_recebida_individual.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfe_recebida_individual",
+      "summary": "Consultar por chave",
+      "method": "GET",
+      "path": "/nfes_recebidas/{chave}",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        },
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": false,
+          "desc": "CNPJ da empresa recebedora, utilizado para desambiguar em caso de múltiplas empresas com a mesma chave"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado o valor 1, retorna os dados completos da nota, caso esses estejam disponíveis. Caso contrário, retorna apenas os dados resumidos."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfe_recebida_individual_json.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfe_recebida_individual_json",
+      "summary": "Consulta em formato JSON",
+      "method": "GET",
+      "path": "/nfes_recebidas/{chave}.json",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado o valor 1, retorna os dados completos da nota, caso esses estejam disponíveis. Caso contrário, retorna apenas os dados resumidos."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfe_recebida_individual_pdf.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfe_recebida_individual_pdf",
+      "summary": "Baixar o DANFe",
+      "method": "GET",
+      "path": "/nfes_recebidas/{chave}.pdf",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "302",
+          "desc": "Redirecionamento encontrado"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfe_recebida_individual_xml.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfe_recebida_individual_xml",
+      "summary": "Baixar o XML",
+      "method": "GET",
+      "path": "/nfes_recebidas/{chave}.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlNfe"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfes_recebidas.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "consultar_nfes_recebidas",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfes_recebidas",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": true,
+          "desc": "CNPJ da empresa recebedora"
+        },
+        {
+          "name": "versao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca apenas os documentos cuja versão seja maior que o parâmetro recebido. Utilize este parâmetro para buscar apenas as notas que seu sistema ainda não conhece."
+        },
+        {
+          "name": "pendente",
+          "in": "query",
+          "required": false,
+          "desc": "Lista apenas as notas que estão pendentes de manifestação final. São consideradas notas pendentes aquelas que não tem manifesto ou tem apenas manifesto de ciência (não havendo o ma"
+        },
+        {
+          "name": "pendente_ciencia",
+          "in": "query",
+          "required": false,
+          "desc": "Lista apenas as notas que não tem a operação de ciência registrada"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "Ação não permitida"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfgas.md",
+      "title": "NFGás - Nota Fiscal Eletrônica do Gás",
+      "operationId": "consultar_nfgas",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfgas/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFGás"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfgasNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFGás (Beta)"
+      ]
+    },
+    {
+      "file": "consultar_nfse.md",
+      "title": "NFSe - Nota Fiscal de Serviço",
+      "operationId": "consultar_nfse",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfse/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "404",
+          "desc": "NfseNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe"
+      ]
+    },
+    {
+      "file": "consultar_nfse_nacional.md",
+      "title": "NFSe Nacional - Nota Fiscal de Serviço Padrão Nacional",
+      "operationId": "consultar_nfse_nacional",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfsen/{referencia}",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência do DPS/NFSe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional"
+      ]
+    },
+    {
+      "file": "consultar_nfsen_recebida_individual_html.md",
+      "title": "NFSe Nacional Recebidas",
+      "operationId": "consultar_nfsen_recebida_individual_html",
+      "summary": "DANFSe HTML",
+      "method": "GET",
+      "path": "/nfsens_recebidas/{chave}.html",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfsenRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfsen_recebida_individual_json.md",
+      "title": "NFSe Nacional Recebidas",
+      "operationId": "consultar_nfsen_recebida_individual_json",
+      "summary": "Consulta em formato JSON",
+      "method": "GET",
+      "path": "/nfsens_recebidas/{chave}.json",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfsenRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfsen_recebida_individual_pdf.md",
+      "title": "NFSe Nacional Recebidas",
+      "operationId": "consultar_nfsen_recebida_individual_pdf",
+      "summary": "Visualizar/Baixar o PDF da DANFSe",
+      "method": "GET",
+      "path": "/nfsens_recebidas/{chave}.pdf",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfsenRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfsen_recebida_individual_xml.md",
+      "title": "NFSe Nacional Recebidas",
+      "operationId": "consultar_nfsen_recebida_individual_xml",
+      "summary": "Consultar em formato XML",
+      "method": "GET",
+      "path": "/nfsens_recebidas/{chave}.xml",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XmlNfsen"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfsenRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_nfsen_recebidas.md",
+      "title": "NFSe Nacional Recebidas",
+      "operationId": "consultar_nfsen_recebidas",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/nfsens_recebidas",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": true,
+          "desc": "CNPJ da empresa recebedora"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se informado com o valor \"1\", devolve os dados completos do XML da nota. Caso contrário, devolve os dados resumidos de forma simplificada."
+        },
+        {
+          "name": "versao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca apenas os documentos cuja versão seja maior que o parâmetro recebido. Utilize este parâmetro para buscar apenas as notas que seu sistema ainda não conhece."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional Recebidas"
+      ]
+    },
+    {
+      "file": "consultar_webhook.md",
+      "title": "Webhooks (Gatilhos)",
+      "operationId": "consultar_webhook",
+      "summary": "Consultar por ID",
+      "method": "GET",
+      "path": "/hooks/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "desc": "Identificador do gatilho"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Gatilho encontrado"
+        }
+      ],
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "file": "criar_empresa.md",
+      "title": "Empresas",
+      "operationId": "criar_empresa",
+      "summary": "Criar",
+      "method": "POST",
+      "path": "/empresas",
+      "params": [
+        {
+          "name": "dry_run",
+          "in": "query",
+          "required": false,
+          "desc": "Simula a criação da empresa sem persistir os dados"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "ParametrosInvalidos"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "Empresas"
+      ]
+    },
+    {
+      "file": "criar_webhook.md",
+      "title": "Webhooks (Gatilhos)",
+      "operationId": "criar_webhook",
+      "summary": "Criar",
+      "method": "POST",
+      "path": "/hooks",
+      "params": [],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Gatilho criado com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "404",
+          "desc": "HookNaoEncontrado"
+        }
+      ],
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "file": "danfe_etiqueta.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "danfe_etiqueta",
+      "summary": "Criação DANFe Etiqueta",
+      "method": "POST",
+      "path": "/nfe/{referencia}/danfe_etiqueta",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "DANFe Etiqueta Gerada"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "efetivar_nfce_contingencia_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "efetivar_nfce_contingencia_local",
+      "summary": "Efetivar NFCe em contingência",
+      "method": "PUT",
+      "path": "/v2/fiscal/nfce/{referencia}/efetivar",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFCe emitida em contingência."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "emitir_carta_correcao.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "emitir_carta_correcao",
+      "summary": "Emitir Carta de Correção",
+      "method": "POST",
+      "path": "/nfe/{referencia}/carta_correcao",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Carta de correção autorizada"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "emitir_cte.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "emitir_cte",
+      "summary": "Emitir CTe",
+      "method": "POST",
+      "path": "/cte",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência do CTe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "409",
+          "desc": "A requisição não pôde ser concluída devido a um conflito com o estado atual do recurso"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "emitir_cte_os.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "emitir_cte_os",
+      "summary": "Emitir CT-e OS",
+      "method": "POST",
+      "path": "/cte_os",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência do CT-e OS"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "409",
+          "desc": "A requisição não pôde ser concluída devido a um conflito com o estado atual do recurso"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "emitir_cte_simp.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "emitir_cte_simp",
+      "summary": "Emitir CT-e Simplificado",
+      "method": "POST",
+      "path": "/cte_simp",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência do CT-e Simplificado"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição processada (autorização síncrona)"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "409",
+          "desc": "A requisição não pôde ser concluída devido a um conflito com o estado atual do recurso"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "emitir_dce.md",
+      "title": "DCe - Declaração de Conteúdo Eletrônica",
+      "operationId": "emitir_dce",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/dce",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência única da DCe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "Ação não permitida"
+        }
+      ],
+      "tags": [
+        "DCe"
+      ]
+    },
+    {
+      "file": "emitir_dps_nacional.md",
+      "title": "NFSe Nacional - Nota Fiscal de Serviço Padrão Nacional",
+      "operationId": "emitir_dps_nacional",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/nfsen",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência única para o DPS/NFSe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados."
+        }
+      ],
+      "tags": [
+        "NFSe Nacional"
+      ]
+    },
+    {
+      "file": "emitir_evento_ator_interessado.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "emitir_evento_ator_interessado",
+      "summary": "Registrar Ator Interessado",
+      "method": "POST",
+      "path": "/nfe/{referencia}/ator_interessado",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Ator interessado registrado"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "emitir_evento_econf.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "emitir_evento_econf",
+      "summary": "Registrar Conciliação Financeira (ECONF)",
+      "method": "POST",
+      "path": "/nfe/{referencia}/econf",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "ECONF registrado com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "emitir_evento_insucesso_entrega.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "emitir_evento_insucesso_entrega",
+      "summary": "Registrar Insucesso na Entrega",
+      "method": "POST",
+      "path": "/nfe/{referencia}/insucesso_entrega",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Insucesso na entrega registrado"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "emitir_evento_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "emitir_evento_nfe",
+      "summary": "Emitir Evento",
+      "method": "POST",
+      "path": "/nfe/{referencia}/evento",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NF-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "emitir_evento_nfes_recebidas.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "emitir_evento_nfes_recebidas",
+      "summary": "Evento",
+      "method": "POST",
+      "path": "/nfes_recebidas/{chave}/evento",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "emitir_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "emitir_mdfe",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/mdfe",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência única da MDFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "409",
+          "desc": "A requisição não pôde ser concluída devido a um conflito com o estado atual do recurso"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "emitir_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "emitir_nfce",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/nfce",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência única da NFC-e no seu sistema"
+        },
+        {
+          "name": "completa",
+          "in": "query",
+          "required": false,
+          "desc": "Se 1, retorna dados completos da requisição e protocolo em caso de autorização"
+        },
+        {
+          "name": "forma_emissao",
+          "in": "query",
+          "required": false,
+          "desc": "Use \"offline\" para emissão manual em contingência (informar numero, serie e codigo_unico no corpo)"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "201",
+          "desc": "Recurso criado com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "emitir_nfce_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "emitir_nfce_local",
+      "summary": "Emitir NFCe",
+      "method": "POST",
+      "path": "/v2/fiscal/nfce",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência única do documento fiscal."
+        },
+        {
+          "name": "tipo_contingencia",
+          "in": "query",
+          "required": false,
+          "desc": "Tipo de contingência. Quando informado, a emissão é feita em modo de contingência."
+        },
+        {
+          "name": "forma_emissao",
+          "in": "query",
+          "required": false,
+          "desc": "Quando informado como `offline`, força a emissão em contingência offline."
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Documento emitido com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "emitir_nfcom.md",
+      "title": "NFCom - Nota Fiscal de Comunicação",
+      "operationId": "emitir_nfcom",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/nfcom",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência da NFCom"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "Ação não permitida"
+        }
+      ],
+      "tags": [
+        "NFCom"
+      ]
+    },
+    {
+      "file": "emitir_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "emitir_nfe",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/nfe",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência única da NFe no seu sistema"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "201",
+          "desc": "NFe autorizada (emissão síncrona)"
+        },
+        {
+          "code": "202",
+          "desc": "NFe em processamento (emissão assíncrona)"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "emitir_nfgas.md",
+      "title": "NFGás - Nota Fiscal Eletrônica do Gás",
+      "operationId": "emitir_nfgas",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/nfgas",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência da NFGás"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "202",
+          "desc": "Requisição aceita para processamento"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "Ação não permitida"
+        }
+      ],
+      "tags": [
+        "NFGás (Beta)"
+      ]
+    },
+    {
+      "file": "emitir_nfse.md",
+      "title": "NFSe - Nota Fiscal de Serviço",
+      "operationId": "emitir_nfse",
+      "summary": "Emitir",
+      "method": "POST",
+      "path": "/nfse",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": true,
+          "desc": "Referência da NFSe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "201",
+          "desc": "Recurso criado com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFSe"
+      ]
+    },
+    {
+      "file": "encerrar_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "encerrar_mdfe",
+      "summary": "Encerrar",
+      "method": "POST",
+      "path": "/mdfe/{referencia}/encerrar",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da MDFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontradoResponse"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "enviar_email_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "enviar_email_nfe",
+      "summary": "Enviar NFe por Email",
+      "method": "POST",
+      "path": "/nfe/{referencia}/email",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Emails agendados para envio"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "enviar_nfce_email.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "enviar_nfce_email",
+      "summary": "Enviar NFC-e por email",
+      "method": "POST",
+      "path": "/nfce/{referencia}/email",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFC-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Emails agendados para envio"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "excluir_email_bloqueado.md",
+      "title": "Emails bloqueados",
+      "operationId": "excluir_email_bloqueado",
+      "summary": "Solicitar exclusão",
+      "method": "DELETE",
+      "path": "/blocked_emails/{email}",
+      "params": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "desc": "Endereço de email a excluir do bloqueio."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Bloqueio removido com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "EmailNaoEncontrado"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "Emails Bloqueados"
+      ]
+    },
+    {
+      "file": "excluir_empresa.md",
+      "title": "Empresas",
+      "operationId": "excluir_empresa",
+      "summary": "Excluir",
+      "method": "DELETE",
+      "path": "/empresas/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "desc": "Identificador único da empresa"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "EmpresaNaoEncontrada"
+        },
+        {
+          "code": "422",
+          "desc": "PermissaoNegada"
+        }
+      ],
+      "tags": [
+        "Empresas"
+      ]
+    },
+    {
+      "file": "excluir_webhook.md",
+      "title": "Webhooks (Gatilhos)",
+      "operationId": "excluir_webhook",
+      "summary": "Excluir",
+      "method": "DELETE",
+      "path": "/hooks/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "desc": "Identificador do gatilho"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Gatilho excluído com sucesso"
+        }
+      ],
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "file": "gerar_pdf_nfce_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "gerar_pdf_nfce_local",
+      "summary": "Gerar espelho PDF da NFCe",
+      "method": "GET",
+      "path": "/v2/fiscal/nfce/{chave_nfe}.pdf",
+      "params": [
+        {
+          "name": "chave_nfe",
+          "in": "path",
+          "required": true,
+          "desc": "Chave da NFCe."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "PDF gerado com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "gerar_xml_cancelado_nfce_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "gerar_xml_cancelado_nfce_local",
+      "summary": "Gerar XML cancelado da NFCe",
+      "method": "GET",
+      "path": "/v2/fiscal/nfce/{chave_nfe}-canc.xml",
+      "params": [
+        {
+          "name": "chave_nfe",
+          "in": "path",
+          "required": true,
+          "desc": "Chave da NFCe."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XML de cancelamento gerado com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "gerar_xml_nfce_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "gerar_xml_nfce_local",
+      "summary": "Gerar XML autorizado da NFCe",
+      "method": "GET",
+      "path": "/v2/fiscal/nfce/{chave_nfe}.xml",
+      "params": [
+        {
+          "name": "chave_nfe",
+          "in": "path",
+          "required": true,
+          "desc": "Chave da NFCe."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "XML gerado com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "importar_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "importar_nfe",
+      "summary": "Importar NFe",
+      "method": "POST",
+      "path": "/nfe/importacao",
+      "params": [
+        {
+          "name": "ref",
+          "in": "query",
+          "required": false,
+          "desc": "Referência única da NFe. Se não informado, será utilizada a chave da nota."
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "NFe importada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "incluir_condutor_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "incluir_condutor_mdfe",
+      "summary": "Incluir um condutor",
+      "method": "POST",
+      "path": "/mdfe/{referencia}/inclusao_condutor",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da MDFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontradoResponse"
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "incluir_dfe_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "incluir_dfe_mdfe",
+      "summary": "Incluir um DFe",
+      "method": "POST",
+      "path": "/mdfe/{referencia}/inclusao_dfe",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da MDFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontradoResponse"
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "informar_desacordo_cte_recebida.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "informar_desacordo_cte_recebida",
+      "summary": "Informar desacordo",
+      "method": "POST",
+      "path": "/ctes_recebidas/{chave}/desacordo",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso do CT-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "Ação não permitida"
+        },
+        {
+          "code": "404",
+          "desc": "CTeRecebidaNaoEncontrada"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "inutilizar_numeracao.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "inutilizar_numeracao",
+      "summary": "Inutilizar Numeração",
+      "method": "POST",
+      "path": "/nfe/inutilizacao",
+      "params": [],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Inutilização realizada"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "inutilizar_numeracao_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "inutilizar_numeracao_nfce",
+      "summary": "Inutilizar numeração",
+      "method": "POST",
+      "path": "/nfce/inutilizacao",
+      "params": [],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Inutilização realizada"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    },
+    {
+      "file": "listar_codigos_cnae.md",
+      "title": "CNAE - Classificação Nacional de Atividades Econômicas",
+      "operationId": "listar_codigos_cnae",
+      "summary": "Consultar",
+      "method": "GET",
+      "path": "/codigos_cnae",
+      "params": [
+        {
+          "name": "codigo",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pelo código ou trecho do código CNAE."
+        },
+        {
+          "name": "descricao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pela descrição ou pelo trecho da descrição."
+        },
+        {
+          "name": "secao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pelo código exato da seção."
+        },
+        {
+          "name": "descricao_secao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pela descrição da seção ou pelo trecho da descrição."
+        },
+        {
+          "name": "divisao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pelo código exato da divisão."
+        },
+        {
+          "name": "descricao_divisao",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pela descrição da divisão ou pelo trecho da descrição."
+        },
+        {
+          "name": "grupo",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pelo código exato do grupo."
+        },
+        {
+          "name": "descricao_grupo",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pela descrição do grupo ou pelo trecho da descrição."
+        },
+        {
+          "name": "classe",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pelo código exato da classe."
+        },
+        {
+          "name": "descricao_classe",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pela descrição da classe ou pelo trecho da descrição."
+        },
+        {
+          "name": "subclasse",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pelo código exato da subclasse."
+        },
+        {
+          "name": "descricao_subclasse",
+          "in": "query",
+          "required": false,
+          "desc": "Busca pela descrição da subclasse ou pelo trecho da descrição."
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "desc": "Deslocamento para paginação. Cada página retorna até 50 registros."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "CNAE"
+      ]
+    },
+    {
+      "file": "listar_codigos_tributarios_municipio.md",
+      "title": "Municípios (beta)",
+      "operationId": "listar_codigos_tributarios_municipio",
+      "summary": "Listar códigos tributários municipais",
+      "method": "GET",
+      "path": "/municipios/{codigo_municipio}/codigos_tributarios_municipio",
+      "params": [
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "codigo",
+          "in": "query",
+          "required": false,
+          "desc": "Trecho do código tributário municipal"
+        },
+        {
+          "name": "descricao",
+          "in": "query",
+          "required": false,
+          "desc": "Trecho da descrição"
+        },
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "desc": "Quantidade máxima de códigos tributários por página (padrão **50**). Use com **offset** para paginar.\n"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "Recurso não encontrado"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "listar_empresas.md",
+      "title": "Empresas",
+      "operationId": "listar_empresas",
+      "summary": "Listar",
+      "method": "GET",
+      "path": "/empresas",
+      "params": [
+        {
+          "name": "cnpj",
+          "in": "query",
+          "required": false,
+          "desc": "Número do CNPJ da empresa (somente números)"
+        },
+        {
+          "name": "cpf",
+          "in": "query",
+          "required": false,
+          "desc": "Número do CPF da empresa (somente números)"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "desc": "Deslocamento para paginação. Cada página retorna até 50 registros."
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "Empresas"
+      ]
+    },
+    {
+      "file": "listar_itens_lista_servico_municipio.md",
+      "title": "Municípios (beta)",
+      "operationId": "listar_itens_lista_servico_municipio",
+      "summary": "Listar itens da lista de serviço do município",
+      "method": "GET",
+      "path": "/municipios/{codigo_municipio}/itens_lista_servico",
+      "params": [
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "codigo",
+          "in": "query",
+          "required": false,
+          "desc": "Trecho do código do item (ex. 14. ou 14.01)"
+        },
+        {
+          "name": "descricao",
+          "in": "query",
+          "required": false,
+          "desc": "Trecho da descrição do item"
+        },
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "desc": "Quantidade máxima de itens por página (padrão **50**). Use com **offset** para paginar.\n"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "Recurso não encontrado"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "listar_municipios.md",
+      "title": "Municípios (beta)",
+      "operationId": "listar_municipios",
+      "summary": "Listar ou filtrar municípios",
+      "method": "GET",
+      "path": "/municipios",
+      "params": [
+        {
+          "name": "sigla_uf",
+          "in": "query",
+          "required": false,
+          "desc": "Sigla da UF (ex. PR)"
+        },
+        {
+          "name": "nome_municipio",
+          "in": "query",
+          "required": false,
+          "desc": "Nome exato do município (retorna em geral um registro)"
+        },
+        {
+          "name": "nome",
+          "in": "query",
+          "required": false,
+          "desc": "Parte do nome do município (busca parcial)"
+        },
+        {
+          "name": "status_nfse",
+          "in": "query",
+          "required": false,
+          "desc": "Status da emissão de NFSe no município"
+        },
+        {
+          "name": null,
+          "in": null,
+          "required": false,
+          "desc": ""
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "desc": "Quantidade máxima de municípios por página (padrão **50**). Use com **offset** para paginar.\n"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "Municípios"
+      ]
+    },
+    {
+      "file": "listar_nfces_pendentes_local.md",
+      "title": "Comunicador Offline Focus NFe",
+      "operationId": "listar_nfces_pendentes_local",
+      "summary": "Listar NFCes pendentes de efetivação",
+      "method": "GET",
+      "path": "/v2/fiscal/nfce/pendentes",
+      "params": [],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        }
+      ],
+      "tags": [
+        "API Local NFCe"
+      ]
+    },
+    {
+      "file": "listar_webhooks.md",
+      "title": "Webhooks (Gatilhos)",
+      "operationId": "listar_webhooks",
+      "summary": "Listar",
+      "method": "GET",
+      "path": "/hooks",
+      "params": [],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        }
+      ],
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "file": "manifestar_nfe_recebida.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "manifestar_nfe_recebida",
+      "summary": "Manifestar",
+      "method": "POST",
+      "path": "/nfes_recebidas/{chave}/manifesto",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave de acesso da NFe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfeRecebidaNaoEncontrada"
+        },
+        {
+          "code": "415",
+          "desc": "O tipo de mídia especificado no cabeçalho Content-Type da requisição não é suportado pelo servidor."
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "previsualizar_danfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "previsualizar_danfe",
+      "summary": "Pré-visualização de DANFe",
+      "method": "POST",
+      "path": "/nfe/danfe",
+      "params": [],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "DANFe gerada com sucesso"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "reenviar_email_nfse.md",
+      "title": "NFSe - Nota Fiscal de Serviço",
+      "operationId": "reenviar_email_nfse",
+      "summary": "Reenviar email",
+      "method": "POST",
+      "path": "/nfse/{referencia}/email",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "404",
+          "desc": "NfseNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe"
+      ]
+    },
+    {
+      "file": "reenviar_email_nfsen.md",
+      "title": "NFSe Nacional - Nota Fiscal de Serviço Padrão Nacional",
+      "operationId": "reenviar_email_nfsen",
+      "summary": "Reenviar email",
+      "method": "POST",
+      "path": "/nfsen/{referencia}/email",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe Nacional"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Requisição processada com sucesso"
+        },
+        {
+          "code": "404",
+          "desc": "NaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional"
+      ]
+    },
+    {
+      "file": "reenviar_hook_cte_cte_os.md",
+      "title": "CTe, CTe OS e CTe Simplificado - Conhecimento de Transporte Eletrônico",
+      "operationId": "reenviar_hook_cte_cte_os",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/cte/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da CTe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "CTe/CTeOs"
+      ]
+    },
+    {
+      "file": "reenviar_hook_cte_recebida.md",
+      "title": "CTe Recebidas - Conhecimento de Transporte Eletrônico",
+      "operationId": "reenviar_hook_cte_recebida",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/ctes_recebidas/{chave}/hook",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave da CTe recebida"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "CTe Recebidas"
+      ]
+    },
+    {
+      "file": "reenviar_hook_dce.md",
+      "title": "DCe - Declaração de Conteúdo Eletrônica",
+      "operationId": "reenviar_hook_dce",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/dce/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da DCe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "DCe"
+      ]
+    },
+    {
+      "file": "reenviar_hook_mdfe.md",
+      "title": "MDFe - Manifesto Eletrônico de Documentos Fiscais",
+      "operationId": "reenviar_hook_mdfe",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/mdfe/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFCom"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "MDFe"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfcom.md",
+      "title": "NFCom - Nota Fiscal de Comunicação",
+      "operationId": "reenviar_hook_nfcom",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/nfcom/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFCom"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "NFCom"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfe.md",
+      "title": "NFe - Nota Fiscal Eletrônica",
+      "operationId": "reenviar_hook_nfe",
+      "summary": "Solicitar reenvio de notificação de NFe",
+      "method": "POST",
+      "path": "/nfe/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "NFe"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfe_recebida.md",
+      "title": "NFe Recebidas - Manifestação do Destinatário",
+      "operationId": "reenviar_hook_nfe_recebida",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/nfes_recebidas/{chave}/hook",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": "Chave da NFe recebida"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "NFe Recebidas"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfgas.md",
+      "title": "NFGás - Nota Fiscal Eletrônica do Gás",
+      "operationId": "reenviar_hook_nfgas",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/nfgas/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFGás"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "NFGás (Beta)"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfse.md",
+      "title": "NFSe - Nota Fiscal de Serviço",
+      "operationId": "reenviar_hook_nfse",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/nfse/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "NFSe"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfsen.md",
+      "title": "NFSe Nacional - Nota Fiscal de Serviço Padrão Nacional",
+      "operationId": "reenviar_hook_nfsen",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/nfsen/{referencia}/hook",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFSe Nacional"
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional"
+      ]
+    },
+    {
+      "file": "reenviar_hook_nfsen_recebida.md",
+      "title": "NFSe Nacional Recebidas",
+      "operationId": "reenviar_hook_nfsen_recebida",
+      "summary": "Solicitar reenvio de notificação",
+      "method": "POST",
+      "path": "/nfsens_recebidas/{chave}/hook",
+      "params": [
+        {
+          "name": "chave",
+          "in": "path",
+          "required": true,
+          "desc": ""
+        }
+      ],
+      "hasBody": false,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "Lista de gatilhos acionados"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "404",
+          "desc": "NfsenRecebidaNaoEncontrada"
+        }
+      ],
+      "tags": [
+        "NFSe Nacional Recebidas"
+      ]
+    },
+    {
+      "file": "registrar_econf_nfce.md",
+      "title": "NFC-e - Nota Fiscal de Consumidor Eletrônica",
+      "operationId": "registrar_econf_nfce",
+      "summary": "Registrar Conciliação Financeira (ECONF)",
+      "method": "POST",
+      "path": "/nfce/{referencia}/econf",
+      "params": [
+        {
+          "name": "referencia",
+          "in": "path",
+          "required": true,
+          "desc": "Referência da NFC-e"
+        }
+      ],
+      "hasBody": true,
+      "responses": [
+        {
+          "code": "200",
+          "desc": "ECONF registrado com sucesso"
+        },
+        {
+          "code": "400",
+          "desc": "Requisição inválida"
+        },
+        {
+          "code": "401",
+          "desc": "AccessDenied"
+        },
+        {
+          "code": "403",
+          "desc": "PermissaoNegada"
+        },
+        {
+          "code": "404",
+          "desc": "NotFound"
+        },
+        {
+          "code": "415",
+          "desc": "InvalidMediaType"
+        },
+        {
+          "code": "422",
+          "desc": "O servidor entendeu a requisição, mas os dados são inválidos ou não podem ser processados"
+        }
+      ],
+      "tags": [
+        "NFCe"
+      ]
+    }
+  ],
+  "error_codigos": [
+    "1.06",
+    "8599603",
+    "90049090",
+    "already_processed",
+    "ambiente_nao_configurado",
+    "bad_request",
+    "cte_em_processamento",
+    "cte_ja_autorizado",
+    "empresa_nao_configurada",
+    "empresa_nao_habilitada",
+    "erro_validacao",
+    "erro_validacao_schema",
+    "event_not_found",
+    "forma_emissao_nao_informada",
+    "formato_invalido",
+    "mdfe_em_processamento",
+    "mdfe_ja_autorizado",
+    "mdfe_ja_encerrado",
+    "modelo_invalido",
+    "nao_autorizado",
+    "nao_encontrado",
+    "nfe_autorizada",
+    "nfe_nao_autorizada",
+    "nota_ja_existente",
+    "object_not_found",
+    "parametros_modal_nao_informados",
+    "pending_operation",
+    "permissao_negada",
+    "requisicao_invalida"
+  ],
+  "status_enums": {
+    "EconfCancelamentoResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "CancelamentoInsucessoEntregaResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "EventoResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "CancelamentoNFCeResponse": [
+      "cancelado",
+      "erro_cancelamento"
+    ],
+    "CancelamentoNFeResponse": [
+      "cancelado",
+      "erro_cancelamento"
+    ],
+    "CancelamentoResponse": [
+      "cancelado"
+    ],
+    "ErroCancelamentoResponse": [
+      "erro_cancelamento"
+    ],
+    "AutorizadaCompletoResponse": [
+      "autorizado"
+    ],
+    "CanceladaResponse": [
+      "cancelada",
+      "cancelado"
+    ],
+    "ErroAutorizacaoResponse": [
+      "erro_autorizacao"
+    ],
+    "DceCanceladaResponse": [
+      "cancelado"
+    ],
+    "DceErroAutorizacaoResponse": [
+      "erro_autorizacao"
+    ],
+    "EconfResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "InutilizacaoResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "InutilizacaoNFCeResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "NFCeConsultaResponse": [
+      "autorizado",
+      "denegado",
+      "erro_autorizacao"
+    ],
+    "NFeAutorizadaResponse": [
+      "autorizado"
+    ],
+    "NFeProcessandoResponse": [
+      "processando_autorizacao"
+    ],
+    "AutorizadaResponse": [
+      "autorizado",
+      "cancelado",
+      "erro_autorizacao",
+      "negado"
+    ],
+    "CartaCorrecaoResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "AtorInteressadoResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "InsucessoEntregaResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "NFCeAutorizadaResponse": [
+      "autorizado",
+      "erro_autorizacao"
+    ],
+    "EventoAutorizadoResponse": [
+      "erro_inclusao",
+      "incluido"
+    ],
+    "NFeConsultaResponse": [
+      "autorizado",
+      "cancelado",
+      "denegado",
+      "erro_autorizacao",
+      "processando_autorizacao"
+    ]
+  }
+}

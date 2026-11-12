@@ -1,0 +1,1430 @@
+[
+  {
+    "method": "POST",
+    "path": "/instance/create",
+    "title": "/instance/create",
+    "params": [
+      {
+        "name": "instanceName",
+        "type": "string",
+        "required": true,
+        "description": "Identificador único da instância dentro da sua conta. Será usado como :name em todos os outros endpoints."
+      },
+      {
+        "name": "qrcode",
+        "type": "boolean",
+        "required": false,
+        "description": "Retorna o QR Code na resposta de criação (se suportado pelo core)."
+      },
+      {
+        "name": "token",
+        "type": "string",
+        "required": false,
+        "description": "Token personalizado."
+      },
+      {
+        "name": "rejectCall",
+        "type": "boolean",
+        "required": false,
+        "description": "Rejeita automaticamente chamadas recebidas."
+      },
+      {
+        "name": "msgCall",
+        "type": "string",
+        "required": false,
+        "description": "Mensagem enviada automaticamente ao rejeitar uma chamada."
+      },
+      {
+        "name": "groupsIgnore",
+        "type": "boolean",
+        "required": false,
+        "description": "Ignora eventos de grupos no webhook."
+      },
+      {
+        "name": "alwaysOnline",
+        "type": "boolean",
+        "required": false,
+        "description": "Mantém a conta sempre online no WhatsApp."
+      },
+      {
+        "name": "readMessages",
+        "type": "boolean",
+        "required": false,
+        "description": "Marca automaticamente as mensagens como lidas."
+      },
+      {
+        "name": "readStatus",
+        "type": "boolean",
+        "required": false,
+        "description": "Marca automaticamente status como visto."
+      },
+      {
+        "name": "syncFullHistory",
+        "type": "boolean",
+        "required": false,
+        "description": "Sincroniza o histórico completo do WhatsApp ao conectar."
+      },
+      {
+        "name": "webhook.enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Ativa o webhook já na criação."
+      },
+      {
+        "name": "webhook.url",
+        "type": "string",
+        "required": false,
+        "description": "URL HTTPS pública que receberá os eventos. Bloqueado: localhost, IPs privados e redes internas (proteção SSRF)."
+      },
+      {
+        "name": "webhook.events",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de eventos para filtrar. Se omitida, todos os eventos são enviados."
+      },
+      {
+        "name": "webhook.base64",
+        "type": "boolean",
+        "required": false,
+        "description": "Se true, mídias nos eventos vêm codificadas em base64."
+      },
+      {
+        "name": "proxyHost",
+        "type": "string",
+        "required": false,
+        "description": "Proxy: host público (Enterprise)."
+      },
+      {
+        "name": "proxyPort",
+        "type": "string",
+        "required": false,
+        "description": "Proxy: porta (Enterprise)."
+      },
+      {
+        "name": "proxyUsername",
+        "type": "string",
+        "required": false,
+        "description": "Proxy: usuário (Enterprise)."
+      },
+      {
+        "name": "proxyPassword",
+        "type": "string",
+        "required": false,
+        "description": "Proxy: senha (Enterprise)."
+      },
+      {
+        "name": "migration",
+        "type": "object",
+        "required": false,
+        "description": "Migração de sessão Baileys já autenticada. Restrito ao plano Enterprise. Estrutura: { creds: object, preKeys: array }. Resposta inclui migration: { jid, preKeysImported, connected }."
+      },
+      {
+        "name": "proxyProtocol",
+        "type": "string",
+        "required": false,
+        "description": "http | https | socks5 (Enterprise)."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/instance/connect/:name",
+    "title": "Conectar Instância",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": false,
+        "description": "Número de telefone com DDI para receber pairing code em vez de QR Code (ex: 5511999998888)."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/instance/connect/:name/image",
+    "title": "QR Code como PNG",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Nome da instância."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/instance/connectionState/:name",
+    "title": "Estado da Conexão",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Nome da instância."
+      }
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "/instance/update/:name",
+    "title": "Atualizar Instância",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Nome da instância (path param)."
+      },
+      {
+        "name": "webhook.enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Ativa/desativa o webhook."
+      },
+      {
+        "name": "webhook.url",
+        "type": "string",
+        "required": false,
+        "description": "URL HTTPS que receberá os eventos. Bloqueado: localhost, IPs privados e redes internas."
+      },
+      {
+        "name": "webhook.events",
+        "type": "string[]",
+        "required": false,
+        "description": "Filtro de eventos (ex: messages.upsert, connection.update)."
+      },
+      {
+        "name": "webhook.base64",
+        "type": "boolean",
+        "required": false,
+        "description": "Se true, mídias nos eventos vêm codificadas em base64."
+      },
+      {
+        "name": "proxyHost",
+        "type": "string",
+        "required": false,
+        "description": "Host público do proxy (Enterprise)."
+      },
+      {
+        "name": "proxyPort",
+        "type": "string",
+        "required": false,
+        "description": "Porta do proxy (Enterprise)."
+      },
+      {
+        "name": "proxyUsername",
+        "type": "string",
+        "required": false,
+        "description": "Usuário do proxy (Enterprise)."
+      },
+      {
+        "name": "proxyPassword",
+        "type": "string",
+        "required": false,
+        "description": "Senha do proxy (Enterprise)."
+      }
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/instance/logout/:name",
+    "title": "Desconectar (Logout)",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Nome da instância."
+      }
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/instance/delete/:name",
+    "title": "Deletar Instância",
+    "params": []
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendText/:instance",
+    "title": "Enviar Texto",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário com DDI e DDD (ex: 5511999998888)."
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "O texto a ser enviado."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos antes de enviar (máx: 300000)."
+      },
+      {
+        "name": "linkPreview",
+        "type": "boolean",
+        "required": false,
+        "description": "Exibir preview de links."
+      },
+      {
+        "name": "mentionsEveryOne",
+        "type": "boolean",
+        "required": false,
+        "description": "Mencionar todos em grupos."
+      },
+      {
+        "name": "mentioned",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs a mencionar."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendMedia/:instance",
+    "title": "Enviar Mídia",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário."
+      },
+      {
+        "name": "media",
+        "type": "string",
+        "required": true,
+        "description": "URL pública do arquivo."
+      },
+      {
+        "name": "caption",
+        "type": "string",
+        "required": false,
+        "description": "Legenda da mídia."
+      },
+      {
+        "name": "fileName",
+        "type": "string",
+        "required": false,
+        "description": "Nome do arquivo (para documentos)."
+      },
+      {
+        "name": "mimetype",
+        "type": "string",
+        "required": false,
+        "description": "MIME type do arquivo."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos (máx: 300000)."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      },
+      {
+        "name": "mentionsEveryOne",
+        "type": "boolean",
+        "required": false,
+        "description": "Mencionar todos em grupos."
+      },
+      {
+        "name": "mentioned",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs a mencionar."
+      },
+      {
+        "name": "mediatype",
+        "type": "string",
+        "required": true,
+        "description": "Tipo: image | video | document (obrigatório na prática; presente nos exemplos oficiais)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendWhatsAppAudio/:instance",
+    "title": "Enviar Áudio (PTT)",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário."
+      },
+      {
+        "name": "audio",
+        "type": "string",
+        "required": true,
+        "description": "URL pública do arquivo MP3/OGG."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos (máx: 300000)."
+      },
+      {
+        "name": "encoding",
+        "type": "boolean",
+        "required": false,
+        "description": "Re-encodar o áudio antes de enviar."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      },
+      {
+        "name": "mentionsEveryOne",
+        "type": "boolean",
+        "required": false,
+        "description": "Mencionar todos em grupos."
+      },
+      {
+        "name": "mentioned",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs a mencionar."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendList/:instance",
+    "title": "Enviar Lista",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "Título da mensagem."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": "Descrição/corpo da mensagem."
+      },
+      {
+        "name": "buttonText",
+        "type": "string",
+        "required": false,
+        "description": "Texto do botão que abre a lista."
+      },
+      {
+        "name": "footerText",
+        "type": "string",
+        "required": false,
+        "description": "Texto do rodapé."
+      },
+      {
+        "name": "sections",
+        "type": "array",
+        "required": true,
+        "description": "Seções da lista, cada uma com title e rows[]."
+      },
+      {
+        "name": "sections[].title",
+        "type": "string",
+        "required": false,
+        "description": "Título da seção."
+      },
+      {
+        "name": "sections[].rows[].title",
+        "type": "string",
+        "required": true,
+        "description": "Título da opção."
+      },
+      {
+        "name": "sections[].rows[].description",
+        "type": "string",
+        "required": false,
+        "description": "Descrição da opção."
+      },
+      {
+        "name": "sections[].rows[].rowId",
+        "type": "string",
+        "required": true,
+        "description": "ID único da opção (retornado no webhook)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendButtons/:instance",
+    "title": "Enviar Botões",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "Título da mensagem."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": "Corpo da mensagem."
+      },
+      {
+        "name": "footer",
+        "type": "string",
+        "required": false,
+        "description": "Texto do rodapé."
+      },
+      {
+        "name": "buttons",
+        "type": "array",
+        "required": true,
+        "description": "Lista de botões (máximo 3)."
+      },
+      {
+        "name": "buttons[].displayText",
+        "type": "string",
+        "required": true,
+        "description": "Texto exibido no botão."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendSticker/:instance",
+    "title": "Enviar Figurinha",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "sticker",
+        "type": "string",
+        "required": true,
+        "description": "URL pública do arquivo WebP."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos antes de enviar (máx: 300000)."
+      },
+      {
+        "name": "notConvertSticker",
+        "type": "boolean",
+        "required": false,
+        "description": "Se true, não tenta converter o arquivo antes de enviar."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      },
+      {
+        "name": "mentionsEveryOne",
+        "type": "boolean",
+        "required": false,
+        "description": "Mencionar todos em grupos."
+      },
+      {
+        "name": "mentioned",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs a mencionar."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendLocation/:instance",
+    "title": "Enviar Localização",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "required": true,
+        "description": "Latitude em graus decimais (ex: -23.55052)."
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "required": true,
+        "description": "Longitude em graus decimais (ex: -46.633308)."
+      },
+      {
+        "name": "address",
+        "type": "string",
+        "required": false,
+        "description": "Endereço textual complementar."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos (máx: 300000)."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendContact/:instance",
+    "title": "Enviar Contato",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "contact",
+        "type": "array",
+        "required": true,
+        "description": "Lista de contatos a enviar."
+      },
+      {
+        "name": "contact[].fullName",
+        "type": "string",
+        "required": true,
+        "description": "Nome completo do contato."
+      },
+      {
+        "name": "contact[].phoneNumber",
+        "type": "string",
+        "required": true,
+        "description": "Número de telefone do contato."
+      },
+      {
+        "name": "contact[].wuid",
+        "type": "string",
+        "required": false,
+        "description": "WhatsApp UID do contato (se souber)."
+      },
+      {
+        "name": "contact[].organization",
+        "type": "string",
+        "required": false,
+        "description": "Organização/empresa."
+      },
+      {
+        "name": "contact[].email",
+        "type": "string",
+        "required": false,
+        "description": "E-mail do contato."
+      },
+      {
+        "name": "contact[].url",
+        "type": "string",
+        "required": false,
+        "description": "Website do contato."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos (máx: 300000)."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendPoll/:instance",
+    "title": "Enviar Enquete",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Pergunta da enquete."
+      },
+      {
+        "name": "values",
+        "type": "string[]",
+        "required": true,
+        "description": "Opções de resposta (mínimo 2, máximo 12)."
+      },
+      {
+        "name": "selectableCount",
+        "type": "number",
+        "required": false,
+        "description": "Quantas opções o usuário pode escolher. 0 = apenas 1 voto (padrão). Use 1..N para múltipla escolha."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos (máx: 300000)."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendPtv/:instance",
+    "title": "Enviar Vídeo Redondo (PTV)",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do destinatário (ex: 5511999998888)."
+      },
+      {
+        "name": "video",
+        "type": "string",
+        "required": true,
+        "description": "URL pública do arquivo MP4."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Atraso em milissegundos (máx: 300000)."
+      },
+      {
+        "name": "quoted",
+        "type": "object",
+        "required": false,
+        "description": "Mensagem a ser respondida (key.id obrigatório)."
+      },
+      {
+        "name": "mentionsEveryOne",
+        "type": "boolean",
+        "required": false,
+        "description": "Mencionar todos em grupos."
+      },
+      {
+        "name": "mentioned",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs a mencionar."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendStatus/:instance",
+    "title": "Enviar Status",
+    "params": [
+      {
+        "name": "content",
+        "type": "string",
+        "required": true,
+        "description": "Texto do status OU URL pública do arquivo de mídia."
+      },
+      {
+        "name": "caption",
+        "type": "string",
+        "required": false,
+        "description": "Legenda (apenas para imagem/vídeo)."
+      },
+      {
+        "name": "font",
+        "type": "number",
+        "required": false,
+        "description": "Índice da fonte para texto (0-5)."
+      },
+      {
+        "name": "allContacts",
+        "type": "boolean",
+        "required": false,
+        "description": "Se true, envia para todos os contatos."
+      },
+      {
+        "name": "statusJidList",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs específicos que vão ver o status (ignorado se allContacts=true)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/message/sendReaction/:instance",
+    "title": "Enviar Reação",
+    "params": [
+      {
+        "name": "remoteJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do chat (ex: 5511...@s.whatsapp.net)."
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "ID da mensagem alvo."
+      },
+      {
+        "name": "fromMe",
+        "type": "boolean",
+        "required": true,
+        "description": "Se a mensagem foi enviada por você."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/chat/sendPresence/:instance",
+    "title": "Enviar Presença",
+    "params": [
+      {
+        "name": "number",
+        "type": "string",
+        "required": true,
+        "description": "Número do chat alvo (ex: 5511999998888)."
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "required": false,
+        "description": "Duração em milissegundos (máx: 300000)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/chat/markMessageAsRead/:instance",
+    "title": "Marcar como Lido",
+    "params": [
+      {
+        "name": "remoteJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do chat (ex: 5511...@s.whatsapp.net)."
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "ID da mensagem."
+      },
+      {
+        "name": "sender",
+        "type": "string",
+        "required": false,
+        "description": "JID do remetente (obrigatório em grupos)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/chat/whatsappNumbers/:instance",
+    "title": "Verificar Número",
+    "params": [
+      {
+        "name": "numbers",
+        "type": "string[]",
+        "required": true,
+        "description": "Lista de números para verificar."
+      }
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/chat/deleteMessageForEveryone/:instance",
+    "title": "Deletar Mensagem",
+    "params": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "ID da mensagem a ser deletada."
+      },
+      {
+        "name": "remoteJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do chat (ex: 5511999998888@s.whatsapp.net ou grupo@g.us)."
+      },
+      {
+        "name": "fromMe",
+        "type": "boolean",
+        "required": true,
+        "description": "Se a mensagem foi enviada por você (true) ou recebida (false)."
+      },
+      {
+        "name": "participant",
+        "type": "string",
+        "required": false,
+        "description": "JID do remetente original. Obrigatório ao deletar mensagem de outro participante em grupos."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/webhook/set/:instance",
+    "title": "Configurar Webhook",
+    "params": [
+      {
+        "name": "webhook.enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Ativa ou desativa o webhook."
+      },
+      {
+        "name": "webhook.url",
+        "type": "string",
+        "required": false,
+        "description": "URL que receberá os eventos via POST."
+      },
+      {
+        "name": "webhook.events",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de eventos para filtrar (ex: messages.upsert, connection.update)."
+      },
+      {
+        "name": "webhook.headers",
+        "type": "object",
+        "required": false,
+        "description": "Headers HTTP customizados enviados junto com cada evento."
+      },
+      {
+        "name": "webhook.byEvents",
+        "type": "boolean",
+        "required": false,
+        "description": "Se true, envia um POST por evento. Se false, agrupa."
+      },
+      {
+        "name": "webhook.base64",
+        "type": "boolean",
+        "required": false,
+        "description": "Se true, codifica o payload em base64."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/webhook/find/:instance",
+    "title": "Consultar Webhook",
+    "params": []
+  },
+  {
+    "method": "POST",
+    "path": "/group/create/:instance",
+    "title": "Criar Grupo",
+    "params": [
+      {
+        "name": "subject",
+        "type": "string",
+        "required": true,
+        "description": "Nome do grupo (1 a 25 caracteres)."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Descrição/tópico inicial do grupo."
+      },
+      {
+        "name": "participants",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de números a adicionar (com DDI, sem caracteres especiais)."
+      },
+      {
+        "name": "promoteParticipants",
+        "type": "boolean",
+        "required": false,
+        "description": "Promover todos os participantes adicionados a admin."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/updateGroupSubject/:instance",
+    "title": "Atualizar Nome do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo (ex: 120363xxxxxxx@g.us)."
+      },
+      {
+        "name": "subject",
+        "type": "string",
+        "required": true,
+        "description": "Novo nome do grupo (1 a 25 caracteres)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/updateGroupPicture/:instance",
+    "title": "Atualizar Foto do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo (ex: 120363xxxxxxx@g.us)."
+      },
+      {
+        "name": "image",
+        "type": "string",
+        "required": true,
+        "description": "URL pública de uma imagem JPEG ou imagem em base64 (data URI ou puro base64)."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/updateGroupDescription/:instance",
+    "title": "Atualizar Descrição do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": "Nova descrição (string vazia remove)."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/group/findGroupInfos/:instance?groupJid={jid}",
+    "title": "Buscar Informações do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID do grupo."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/group/fetchAllGroups/:instance?getParticipants={bool}",
+    "title": "Listar Todos os Grupos",
+    "params": []
+  },
+  {
+    "method": "GET",
+    "path": "/group/participants/:instance?groupJid={jid}",
+    "title": "Listar Participantes do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID do grupo."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/group/inviteCode/:instance?groupJid={jid}",
+    "title": "Obter Link de Convite",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID do grupo."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/group/inviteInfo/:instance?inviteCode={code}",
+    "title": "Informações de um Convite",
+    "params": [
+      {
+        "name": "inviteCode",
+        "type": "string (query)",
+        "required": true,
+        "description": "Código de convite (a parte após /chat.whatsapp.com/)."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/group/acceptInviteCode/:instance?inviteCode={code}",
+    "title": "Aceitar Convite",
+    "params": [
+      {
+        "name": "inviteCode",
+        "type": "string (query)",
+        "required": true,
+        "description": "Código de convite do grupo."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/sendInvite/:instance",
+    "title": "Enviar Convite via DM",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Texto opcional enviado junto com o link."
+      },
+      {
+        "name": "numbers",
+        "type": "string[]",
+        "required": true,
+        "description": "Lista de números (com DDI) que receberão o convite."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/revokeInviteCode/:instance",
+    "title": "Revogar Link de Convite",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/updateParticipant/:instance",
+    "title": "Gerenciar Participantes",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo."
+      },
+      {
+        "name": "participants",
+        "type": "string[]",
+        "required": true,
+        "description": "Lista de JIDs ou números (com DDI) afetados pela operação."
+      },
+      {
+        "name": "action",
+        "type": "string",
+        "required": true,
+        "description": "add | remove | promote | demote"
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/updateSetting/:instance",
+    "title": "Configurações do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo."
+      },
+      {
+        "name": "action",
+        "type": "string",
+        "required": true,
+        "description": "announcement | not_announcement | locked | unlocked"
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/group/toggleEphemeral/:instance",
+    "title": "Mensagens Efêmeras",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo."
+      },
+      {
+        "name": "expiration",
+        "type": "number",
+        "required": false,
+        "description": "Duração em segundos. Apenas um destes valores é aceito: 0 (desativado), 86400 (24h), 604800 (7 dias), 7776000 (90 dias). Omitir equivale a 0."
+      }
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/group/leaveGroup/:instance?groupJid={jid}",
+    "title": "Sair do Grupo",
+    "params": [
+      {
+        "name": "groupJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID do grupo do qual sair."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/create/:instance",
+    "title": "Criar Comunidade",
+    "params": [
+      {
+        "name": "subject",
+        "type": "string",
+        "required": true,
+        "description": "Nome da comunidade (1 a 25 caracteres)."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Descrição da comunidade."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/createSubGroup/:instance",
+    "title": "Criar Sub-grupo na Comunidade",
+    "params": [
+      {
+        "name": "subject",
+        "type": "string",
+        "required": true,
+        "description": "Nome do sub-grupo (1 a 25 caracteres)."
+      },
+      {
+        "name": "parentJid",
+        "type": "string",
+        "required": true,
+        "description": "JID da comunidade pai."
+      },
+      {
+        "name": "participants",
+        "type": "string[]",
+        "required": false,
+        "description": "Números a adicionar ao novo sub-grupo."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/linkGroup/:instance",
+    "title": "Vincular Grupo Existente",
+    "params": [
+      {
+        "name": "parentJid",
+        "type": "string",
+        "required": true,
+        "description": "JID da comunidade."
+      },
+      {
+        "name": "childJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do grupo a vincular."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/unlinkGroup/:instance",
+    "title": "Desvincular Grupo",
+    "params": [
+      {
+        "name": "parentJid",
+        "type": "string",
+        "required": true,
+        "description": "JID da comunidade."
+      },
+      {
+        "name": "childJid",
+        "type": "string",
+        "required": true,
+        "description": "JID do sub-grupo a desvincular."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/community/subGroups/:instance?communityJid={jid}",
+    "title": "Listar Sub-grupos",
+    "params": [
+      {
+        "name": "communityJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID da comunidade pai."
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/community/linkedGroupsParticipants/:instance?communityJid={jid}",
+    "title": "Membros dos Grupos Vinculados",
+    "params": [
+      {
+        "name": "communityJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID da comunidade."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/setJoinApprovalMode/:instance",
+    "title": "Aprovação de Entrada",
+    "params": [
+      {
+        "name": "communityJid",
+        "type": "string",
+        "required": true,
+        "description": "JID da comunidade."
+      },
+      {
+        "name": "mode",
+        "type": "boolean",
+        "required": false,
+        "description": "true para exigir aprovação de novos membros; false (padrão) para entrada livre via link de convite."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/setMemberAddMode/:instance",
+    "title": "Modo de Adição de Membros",
+    "params": [
+      {
+        "name": "communityJid",
+        "type": "string",
+        "required": true,
+        "description": "JID da comunidade."
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "required": true,
+        "description": "admin_add | all_member_add"
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/community/requestParticipants/:instance?communityJid={jid}",
+    "title": "Solicitações Pendentes",
+    "params": [
+      {
+        "name": "communityJid",
+        "type": "string (query)",
+        "required": true,
+        "description": "JID da comunidade."
+      }
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/community/requestParticipants/update/:instance",
+    "title": "Aprovar ou Rejeitar Solicitações",
+    "params": [
+      {
+        "name": "communityJid",
+        "type": "string",
+        "required": true,
+        "description": "JID da comunidade."
+      },
+      {
+        "name": "participants",
+        "type": "string[]",
+        "required": false,
+        "description": "Lista de JIDs a aprovar/rejeitar. Use a resposta de requestParticipants para obter os JIDs pendentes."
+      },
+      {
+        "name": "action",
+        "type": "string",
+        "required": true,
+        "description": "approve | reject"
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/instance/fetchInstances",
+    "title": "Listar Instâncias",
+    "params": []
+  }
+]
